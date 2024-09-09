@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-function vk_display_specific_posts($atts)
+function vkps_display_specific_posts($atts)
 {
 
     $atts = shortcode_atts(['ids' => ''], $atts);
@@ -52,4 +52,22 @@ function vk_display_specific_posts($atts)
     return ob_get_clean();
 }
 
-add_shortcode('vk_slider', 'vk_display_specific_posts');
+add_shortcode('vk_slider', 'vkps_display_specific_posts');
+
+function vkps_enqueue_scripts()
+{
+    wp_enqueue_script(
+        'test',
+        plugins_url('assets/test.js', __FILE__),
+        ['jquery'],
+        '1.0.0',
+        true// load in footer
+    );
+
+    wp_enqueue_style(
+        'test2',
+        plugins_url('assets/test.css', __FILE__)
+    );
+}
+
+add_action('wp_enqueue_scripts', 'vkps_enqueue_scripts');
