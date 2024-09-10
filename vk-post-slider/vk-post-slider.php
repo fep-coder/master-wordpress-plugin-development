@@ -14,12 +14,22 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+// Define constants
+define('VK_POST_SLIDER_PATH', plugin_dir_path(__FILE__));
+define('VK_POST_SLIDER_URL', plugin_dir_url(__FILE__));
+
+// Include required files
+require_once VK_POST_SLIDER_PATH . 'includes/scripts.php';
+require_once VK_POST_SLIDER_PATH . 'includes/shortcode.php';
+
 class VK_Post_Slider
 {
     private static $instance = null;
 
     public function __construct()
     {
+        new VKPS_Scripts();
+        new VKPS_Shortcode();
     }
 
     public static function get_instance()
