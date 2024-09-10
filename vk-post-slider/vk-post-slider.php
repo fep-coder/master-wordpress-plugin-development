@@ -14,79 +14,40 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-function vkps_display_specific_posts($atts)
+class VK_Post_Slider
 {
+    private static $instance = null;
 
-    $atts = shortcode_atts(['ids' => ''], $atts);
-
-    $post_ids = explode(',', $atts['ids']); // 1,2,3
-
-    $args = [
-        'post_type' => 'post',
-        'post__in' => $post_ids,
-        'orderby' => 'post__in',
-    ];
-    $query = new WP_Query($args);
-
-    if (!$query->have_posts()) {
-        return '<p>No posts found.</p>';
+    public function __construct()
+    {
     }
 
-    // Start output buffering
-    ob_start();
-
-    echo '<div class="slider">';
-
-    while ($query->have_posts()) {
-        $query->the_post();
-        ?>
-        <div>
-            <?php the_post_thumbnail();?>
-            <h2><?php the_title();?></h2>
-            <?php the_content();?>
-        </div>
-
-    <?php
-
+    public static function get_instance()
+    {
+        if (is_null(self::$instance)) {
+            self::$instance = new self();
+        }
+        return self::$instance;
     }
 
-    echo '</div>';
+    public static function activate()
+    {
+        // Code to run on plugin activation
+    }
 
-    wp_reset_postdata();
+    public static function deactivate()
+    {
+        // Code to run on plugin deactivation
+    }
 
-    // Get the contents of the output buffer and clean it up
-    return ob_get_clean();
+    public static function uninstall()
+    {
+        // Code to run on plugin uninstall
+    }
 }
 
-add_shortcode('vk_slider', 'vkps_display_specific_posts');
+add_action('plugins_loaded', ['VK_Post_Slider', 'get_instance']);
 
-function vkps_enqueue_scripts()
-{
-    wp_enqueue_script(
-        'slickjs',
-        "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js",
-        ['jquery'],
-        '1.0.0',
-        true
-    );
-
-    wp_enqueue_script(
-        'slick-init',
-        plugins_url('assets/slick-init.js', __FILE__),
-        ['jquery'],
-        '1.0.0',
-        true
-    );
-
-    wp_enqueue_style(
-        'slicktheme',
-        "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"
-    );
-
-    wp_enqueue_style(
-        'slickcss',
-        "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"
-    );
-}
-
-add_action('wp_enqueue_scripts', 'vkps_enqueue_scripts');
+register_activation_hook(__FILE__, ['VK_Post_Slider', 'activate']);
+register_deactivation_hook(__FILE__, ['VK_Post_Slider', 'deactivate']);
+register_uninstall_hook(__FILE__, ['VK_Post_Slider', 'uninstall']);
