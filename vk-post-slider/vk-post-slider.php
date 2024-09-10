@@ -54,7 +54,7 @@ class VK_Post_Slider
 
     public static function uninstall()
     {
-        // Code to run on plugin uninstall
+        delete_option('vk_post_ids');
     }
 }
 

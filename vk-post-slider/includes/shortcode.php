@@ -17,7 +17,10 @@ class VKPS_Shortcode
 
         $atts = shortcode_atts(['ids' => ''], $atts);
 
-        $post_ids = explode(',', $atts['ids']); // 1,2,3
+        $post_ids =
+        !empty($atts['ids'])
+        ? explode(',', $atts['ids'])
+        : explode(',', get_option('vk_post_ids'));
 
         $args = [
             'post_type' => 'post',
