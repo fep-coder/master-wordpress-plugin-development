@@ -21,6 +21,7 @@ define('VK_POST_SLIDER_URL', plugin_dir_url(__FILE__));
 // Include required files
 require_once VK_POST_SLIDER_PATH . 'includes/scripts.php';
 require_once VK_POST_SLIDER_PATH . 'includes/shortcode.php';
+require_once VK_POST_SLIDER_PATH . 'includes/admin.php';
 
 class VK_Post_Slider
 {
@@ -30,6 +31,7 @@ class VK_Post_Slider
     {
         new VKPS_Scripts();
         new VKPS_Shortcode();
+        new VKPS_Admin();
     }
 
     public static function get_instance()
