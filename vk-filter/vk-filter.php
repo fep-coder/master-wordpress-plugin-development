@@ -19,6 +19,7 @@ define('VK_FILTER_PATH', plugin_dir_path(__FILE__));
 
 // Include required files
 require_once VK_FILTER_PATH . 'includes/list-recipes.php';
+require_once VK_FILTER_PATH . 'includes/admin.php';
 
 class VK_Filter
 {
@@ -27,6 +28,7 @@ class VK_Filter
     public function __construct()
     {
         new VKF_List_Recipes();
+        new VKF_Admin();
     }
 
     public static function get_instance()
