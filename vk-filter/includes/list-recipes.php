@@ -48,12 +48,11 @@ class VKF_List_Recipes
             }
 
             $output .= '</div>';
+            wp_reset_postdata();
 
         } else {
             $output = '<p class="text-center w-100">No recipes found</p>';
         }
-
-        wp_reset_postdata();
 
         return $output;
     }

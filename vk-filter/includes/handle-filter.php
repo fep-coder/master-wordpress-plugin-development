@@ -46,7 +46,7 @@ class VKF_Handle_Filter
         }
 
         // Meta query for difficulty
-        if (!empty($difficulty) && $difficulty !== 'Any') {
+        if (!empty($difficulty)) {
             $args['meta_query'][] = [
                 'key' => 'difficulty',
                 'value' => $difficulty,
@@ -63,17 +63,21 @@ class VKF_Handle_Filter
 
                 // Output post content
                 echo '<div class="col-6">';
-                echo '<h2><a href="' . get_permalink() . '">' . get_the_title() . '</h2>';
+                echo '<h2><a href="' . get_permalink() . '">' . get_the_title() . '</a></h2>';
                 if (has_post_thumbnail()) {
                     echo '<a href="' . get_permalink() . '">'
                     . get_the_post_thumbnail(get_the_ID(),
                         'medium', ['class' => 'img-fluid', 'alt' => get_the_title()])
                         . '</a>';
                 }
-                echo '<div>';
+                echo '</div>';
             }
             echo '</div>';
+            wp_reset_postdata();
+        } else {
+            echo '<h3 class="text-center w-100">No recipes found.</h3>';
         }
 
+        wp_die();
     }
 }

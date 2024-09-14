@@ -60,14 +60,20 @@ class VKF_Front_Filter
             <h3>Difficulty</h3>
             <?php if ($difficulties && $difficulties['choices']): ?>
                 <div class="mb-3">
-                <select name="difficulty" class="form-control">
-                <option value="Any">Any</option>
                 <?php foreach ($difficulties['choices'] as $difficulty): ?>
-                    <option value="<?php echo esc_attr($difficulty); ?>">
-                        <?php echo esc_html($difficulty); ?>
-                    </option>
+                    <input
+                        class="btn-check"
+                        type="checkbox"
+                        name="difficulty[]"
+                        id="<?php echo esc_attr($difficulty); ?>"
+                        value="<?php echo esc_attr($difficulty); ?>"
+                    >
+                    <label
+                        class="btn btn-outline-primary"
+                        for="<?php echo esc_attr($difficulty); ?>">
+                            <?php echo esc_html($difficulty); ?>
+                    </label>
                 <?php endforeach;?>
-                </select>
                 </div>
             <?php endif;?>
 
