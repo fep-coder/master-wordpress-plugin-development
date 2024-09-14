@@ -22,7 +22,7 @@ class VKF_Front_Filter
         ob_start();
         ?>
 
-        <form>
+        <form id="custom-filter-form">
             <h3>Categories</h3>
             <?php if ($categories): ?>
                 <div class="mb-3">
@@ -74,7 +74,32 @@ class VKF_Front_Filter
             <button class="btn btn-primary">Filter</button>
         </form>
 
+        <script>
+            jQuery(function ($) {
+               $('#custom-filter-form').submit(function(e) {
+                    e.preventDefault();
+
+                    const formData = $(this).serialize();
+
+                    $('.bg').addClass('show');
+
+                    $.ajax({
+                        type: 'GET',
+                        url: '<?php echo admin_url('admin-ajax.php'); ?>',
+                        data: formData +'&action=filter_posts',
+                        success: function (response) {
+                            $('div.recipes').html(response);
+                        },
+                        complete: function() {
+                            $('.bg').removeClass('show');
+                        }
+                    })
+               });
+            });
+        </script>
+
         <?php
 
+        return ob_get_clean();
     }
 }
