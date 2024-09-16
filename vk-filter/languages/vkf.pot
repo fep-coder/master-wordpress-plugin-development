@@ -1,0 +1,39 @@
+# Copyright (C) 2024 VK
+# This file is distributed under the same license as the VK Filter plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: VK Filter 1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/vk-filter\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-09-16T08:15:44+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.10.0\n"
+"X-Domain: vkf\n"
+
+#. Plugin Name of the plugin
+#: C:\Users\Voja\Local Sites\vk-plugins\app\public\wp-content\plugins\vk-filter\vk-filter.php
+msgid "VK Filter"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: C:\Users\Voja\Local Sites\vk-plugins\app\public\wp-content\plugins\vk-filter\vk-filter.php
+msgid "https://vk.com/vk-filter"
+msgstr ""
+
+#. Description of the plugin
+#: C:\Users\Voja\Local Sites\vk-plugins\app\public\wp-content\plugins\vk-filter\vk-filter.php
+msgid "Post Filter"
+msgstr ""
+
+#. Author of the plugin
+#: C:\Users\Voja\Local Sites\vk-plugins\app\public\wp-content\plugins\vk-filter\vk-filter.php
+msgid "VK"
+msgstr ""
+
+#: includes/admin.php:52
+msgid "VK Filter Settings"
+msgstr ""

@@ -49,6 +49,8 @@ class VKF_Admin
         ?>
 
         <div class="wrap">
+            <h1><?php _e('VK Filter Settings', 'vkf')?></h1>
+
             <?php settings_errors();?>
             <form method="post" action="options.php">
 

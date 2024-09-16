@@ -29,6 +29,8 @@ class VK_Filter
 
     public function __construct()
     {
+        add_action('init', [$this, 'load_textdomain']);
+
         new VKF_List_Recipes();
         new VKF_Admin();
         new VKF_Front_Filter();
@@ -41,6 +43,11 @@ class VK_Filter
             self::$instance = new self();
         }
         return self::$instance;
+    }
+
+    public function load_textdomain()
+    {
+        load_plugin_textdomain('vkf', false, dirname(plugin_basename(__FILE__)) . '/languages/');
     }
 
     public static function activate()
