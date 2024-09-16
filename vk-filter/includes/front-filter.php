@@ -77,6 +77,10 @@ class VKF_Front_Filter
                 </div>
             <?php endif;?>
 
+            <input type="hidden"
+                    name="vkf_nonce"
+                    value="<?php echo wp_create_nonce('vkf_nonce'); ?>">
+
             <button class="btn btn-primary">Filter</button>
         </form>
 

@@ -47,7 +47,10 @@ class VK_Filter
 
     public function load_textdomain()
     {
-        load_plugin_textdomain('vkf', false, dirname(plugin_basename(__FILE__)) . '/languages/');
+        load_plugin_textdomain(
+            'vkf',
+            false, dirname(plugin_basename(__FILE__))
+            . '/languages/');
     }
 
     public static function activate()
@@ -62,6 +65,7 @@ class VK_Filter
 
     public static function uninstall()
     {
+        delete_option('vkf_categories');
     }
 }
 

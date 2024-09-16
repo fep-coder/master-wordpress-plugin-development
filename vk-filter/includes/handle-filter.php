@@ -14,6 +14,11 @@ class VKF_Handle_Filter
 
     public function filter_posts()
     {
+        if (!isset($_GET['vkf_nonce'])
+            && !wp_verify_nonce($_GET['vkf_nonce'], 'vkf_nonce')) {
+            wp_die('Invalid nonce.');
+        }
+
         $categories = isset($_GET['categories']) ? $_GET['categories'] : [];
         $meal = isset($_GET['meal']) ? $_GET['meal'] : '';
         $difficulty = isset($_GET['difficulty']) ? $_GET['difficulty'] : '';
