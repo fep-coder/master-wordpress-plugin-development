@@ -17,6 +17,7 @@ if (!defined('ABSPATH')) {
 define('AARR_PATH', plugin_dir_path(__FILE__));
 
 require_once AARR_PATH . 'admin/admin.php';
+require_once AARR_PATH . 'shortcodes/register_sc.php';
 
 class Add_And_Review_Recipes
 {
@@ -25,6 +26,7 @@ class Add_And_Review_Recipes
     public function __construct()
     {
         new AARR_Admin();
+        new AARR_Register_SC();
     }
 
     public static function get_instance()
