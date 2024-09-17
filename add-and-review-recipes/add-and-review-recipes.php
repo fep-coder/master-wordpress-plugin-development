@@ -19,6 +19,8 @@ define('AARR_PATH', plugin_dir_path(__FILE__));
 require_once AARR_PATH . 'admin/admin.php';
 require_once AARR_PATH . 'shortcodes/register_sc.php';
 require_once AARR_PATH . 'form-handlers/register.php';
+require_once AARR_PATH . 'shortcodes/login_sc.php';
+require_once AARR_PATH . 'form-handlers/login.php';
 
 class Add_And_Review_Recipes
 {
@@ -29,6 +31,8 @@ class Add_And_Review_Recipes
         new AARR_Admin();
         new AARR_Register_SC();
         new AARR_Register();
+        new AARR_Login_SC();
+        new AARR_Login();
     }
 
     public static function get_instance()

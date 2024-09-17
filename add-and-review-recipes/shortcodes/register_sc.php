@@ -19,7 +19,7 @@ class AARR_Register_SC
         ob_start();
         ?>
 
-        <div class="col-8 mx-auto">
+        <div class="col-8 mx-auto text-center">
             <form method="post">
                 <div class="mb-3">
                     <label for="username">
