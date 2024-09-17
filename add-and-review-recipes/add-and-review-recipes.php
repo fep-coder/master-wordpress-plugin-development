@@ -33,6 +33,19 @@ class Add_And_Review_Recipes
         new AARR_Register();
         new AARR_Login_SC();
         new AARR_Login();
+
+        add_action('init', [$this, 'add_role_user']);
+    }
+
+    public function add_role_user()
+    {
+        add_role(
+            'user',
+            __('User', 'aarr'),
+            [
+                'read' => true,
+            ]
+        );
     }
 
     public static function get_instance()

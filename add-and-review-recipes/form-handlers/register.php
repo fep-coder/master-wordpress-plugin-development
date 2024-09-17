@@ -28,7 +28,10 @@ class AARR_Register
             $user_id = wp_create_user($username, $password, $email);
 
             if (!is_wp_error($user_id)) {
-                wp_update_user(['ID' => $user_id, 'role' => 'user']);
+                // wp_update_user(['ID' => $user_id, 'role' => 'user']);
+
+                $user = new WP_User($user_id);
+                $user->set_role('user');
 
                 _e('Registration succesfull', 'aarr');
             } else {
