@@ -54,6 +54,8 @@ class AARR_Register_SC
                         name="password" required>
                 </div>
 
+                <?php wp_nonce_field('register_nonce', 'register_nonce');?>
+
                 <input
                     type="submit"
                     class="btn btn-primary"

@@ -15,7 +15,10 @@ class AARR_Login
 
     public function process_login()
     {
-        if (isset($_POST['login'])) {
+        if (isset($_POST['login'])
+            && isset($_POST['login_nonce'])
+            && wp_verify_nonce($_POST['login_nonce'], 'login_nonce')) {
+
             $username = sanitize_user($_POST['username']);
             $password = $_POST['password'];
 

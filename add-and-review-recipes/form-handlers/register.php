@@ -15,7 +15,10 @@ class AARR_Register
 
     public function process_registration()
     {
-        if (isset($_POST['register'])) {
+        if (isset($_POST['register'])
+            && isset($_POST['register_nonce'])
+            && wp_verify_nonce($_POST['register_nonce'], 'register_nonce')) {
+
             $username = sanitize_user($_POST['username']);
             $email = sanitize_email($_POST['email']);
             $password = $_POST['password'];
