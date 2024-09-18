@@ -35,6 +35,7 @@ class Add_And_Review_Recipes
         new AARR_Login();
 
         add_action('init', [$this, 'add_role_user']);
+        add_action('init', [$this, 'start_session'], 1);
     }
 
     public function add_role_user()
@@ -46,6 +47,13 @@ class Add_And_Review_Recipes
                 'read' => true,
             ]
         );
+    }
+
+    public function start_session()
+    {
+        if (!session_id()) {
+            session_start();
+        }
     }
 
     public static function get_instance()

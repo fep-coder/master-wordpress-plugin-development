@@ -24,7 +24,8 @@ class AARR_Register
             $password = $_POST['password'];
 
             if (username_exists($username) || email_exists($email)) {
-                _e('Username or E-mail already exists', 'aarr');
+                $_SESSION['register_invalid'] =
+                    __('Username or E-mail already exists!', 'aarr');
                 return;
             }
 
@@ -36,9 +37,9 @@ class AARR_Register
                 $user = new WP_User($user_id);
                 $user->set_role('user');
 
-                _e('Registration succesfull', 'aarr');
+                $_SESSION['register_success'] = __('Registration succesfull!', 'aarr');
             } else {
-                _e('Registration failed', 'aarr');
+                $_SESSION['register_error'] = __('Registration failed!', 'aarr');
             }
         }
     }
