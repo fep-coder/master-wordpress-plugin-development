@@ -18,6 +18,15 @@ class AARR_Register_SC
 
         ob_start();
 
+        $post_data = isset($_SESSION['register_data']) ? $_SESSION['register_data'] : [];
+
+        $username = isset($post_data['username']) ? esc_attr($post_data['username']) : '';
+        $email = isset($post_data['email']) ? esc_attr($post_data['email']) : '';
+
+        if (isset($_SESSION['register_data'])) {
+            unset($_SESSION['register_data']);
+        }
+
         if (isset($_SESSION['register_errors'])) {
             echo '<div class="error text-center w-100">';
             foreach ($_SESSION['register_errors'] as $error) {
@@ -65,6 +74,7 @@ class AARR_Register_SC
                             type="text"
                             class="form-control"
                             id="username"
+                            value="<?php echo $username; ?>"
                             name="username" required autofocus>
                     </div>
 
@@ -76,6 +86,7 @@ class AARR_Register_SC
                             type="email"
                             class="form-control"
                             id="email"
+                            value="<?php echo $email; ?>"
                             name="email" required>
                     </div>
 

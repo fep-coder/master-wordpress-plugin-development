@@ -38,6 +38,7 @@ class AARR_Register
             }
 
             if (!empty($errors)) {
+                $_SESSION['register_data'] = $_POST;
                 $_SESSION['register_errors'] = $errors;
                 wp_redirect(wp_get_referer());
                 return;
