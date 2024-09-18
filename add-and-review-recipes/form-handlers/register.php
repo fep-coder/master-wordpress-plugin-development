@@ -23,6 +23,26 @@ class AARR_Register
             $email = sanitize_email($_POST['email']);
             $password = $_POST['password'];
 
+            $errors = [];
+
+            if (strlen($username) < 3) {
+                $errors[] = __('Username must be at least 4 characters long!', 'aarr');
+            }
+
+            if (strlen($email) < 6) {
+                $errors[] = __('E-mail must be at least 6 characters long!', 'aarr');
+            }
+
+            if (strlen($password) < 4) {
+                $errors[] = __('Password must be at least 4 characters long!', 'aarr');
+            }
+
+            if (!empty($errors)) {
+                $_SESSION['register_errors'] = $errors;
+                wp_redirect(wp_get_referer());
+                return;
+            }
+
             if (username_exists($username) || email_exists($email)) {
                 $_SESSION['register_invalid'] =
                     __('Username or E-mail already exists!', 'aarr');

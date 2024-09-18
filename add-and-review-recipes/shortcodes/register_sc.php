@@ -18,6 +18,15 @@ class AARR_Register_SC
 
         ob_start();
 
+        if (isset($_SESSION['register_errors'])) {
+            echo '<div class="error text-center w-100">';
+            foreach ($_SESSION['register_errors'] as $error) {
+                echo '<p>' . esc_html($error) . '</p>';
+            }
+            echo '</div>';
+            unset($_SESSION['register_errors']);
+        }
+
         if (isset($_SESSION['register_success'])) {
             echo '<p class="text-center w-100 text-success">'
                 . $_SESSION['register_success'] . '</p>';
