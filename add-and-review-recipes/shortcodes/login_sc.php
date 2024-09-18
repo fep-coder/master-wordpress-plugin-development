@@ -27,6 +27,27 @@ class AARR_Login_SC
         } else {
 
             ob_start();
+
+            if (isset($_SESSION['login_failed'])) {
+                echo '<p class="text-center w-100 text-danger">'
+                    . $_SESSION['login_failed'] . '</p>';
+                unset($_SESSION['login_failed']);
+            }
+
+            $username = isset($_SESSION['login_username']) ? esc_attr($_SESSION['login_username']) : '';
+
+            if (isset($_SESSION['login_username'])) {
+                unset($_SESSION['login_username']);
+            }
+
+            if (isset($_SESSION['login_errors'])) {
+                echo '<div class="error text-center w-100">';
+                foreach ($_SESSION['login_errors'] as $error) {
+                    echo '<p>' . esc_html($error) . '</p>';
+                }
+                echo '</div>';
+                unset($_SESSION['login_errors']);
+            }
             ?>
 
             <div class="col-6 mx-auto text-center">
@@ -39,6 +60,7 @@ class AARR_Login_SC
                             type="text"
                             class="form-control"
                             id="username"
+                            value="<?php echo $username; ?>"
                             name="username" required autofocus>
                     </div>
 

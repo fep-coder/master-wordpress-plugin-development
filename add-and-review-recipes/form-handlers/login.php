@@ -22,6 +22,23 @@ class AARR_Login
             $username = sanitize_user($_POST['username']);
             $password = $_POST['password'];
 
+            $errors = [];
+
+            if (strlen($username) < 3) {
+                $errors[] = __('Username must be at least 3 characters long!', 'aarr');
+            }
+
+            if (strlen($password) < 4) {
+                $errors[] = __('Password must be at least 4 characters long!', 'aarr');
+            }
+
+            if (!empty($errors)) {
+                $_SESSION['login_username'] = $username;
+                $_SESSION['login_errors'] = $errors;
+                wp_redirect(wp_get_referer());
+                return;
+            }
+
             $credentials = [
                 'user_login' => $username,
                 'user_password' => $password,
@@ -31,7 +48,8 @@ class AARR_Login
             $user = wp_signon($credentials, true);
 
             if (is_wp_error($user)) {
-                _e('Login failed', 'aarr');
+                $_SESSION['login_failed'] = __('Invalid username or password', 'aarr');
+                wp_redirect(wp_get_referer());
             } else {
                 wp_set_current_user($user->ID);
                 wp_set_auth_cookie($user->ID, true);

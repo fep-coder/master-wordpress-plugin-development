@@ -26,7 +26,7 @@ class AARR_Register
             $errors = [];
 
             if (strlen($username) < 3) {
-                $errors[] = __('Username must be at least 4 characters long!', 'aarr');
+                $errors[] = __('Username must be at least 3 characters long!', 'aarr');
             }
 
             if (strlen($email) < 6) {

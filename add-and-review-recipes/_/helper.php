@@ -32,6 +32,24 @@ class AARR_Helper
                 true
             );
         }
+
+        if (is_page('login')) {
+            wp_enqueue_script(
+                'jquery-validate',
+                'https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.21.0/jquery.validate.min.js',
+                ['jquery'],
+                '1.21.0',
+                true
+            );
+
+            wp_enqueue_script(
+                'login-validation',
+                AARR_URL . 'assets/js/login-validation.js',
+                ['jquery', 'jquery-validate'],
+                '1.0.0',
+                true
+            );
+        }
     }
 
 }
