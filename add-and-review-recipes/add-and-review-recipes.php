@@ -15,6 +15,7 @@ if (!defined('ABSPATH')) {
 }
 
 define('AARR_PATH', plugin_dir_path(__FILE__));
+define('AARR_URL', plugin_dir_url(__FILE__));
 
 require_once AARR_PATH . 'admin/admin.php';
 require_once AARR_PATH . 'shortcodes/register_sc.php';
@@ -22,6 +23,7 @@ require_once AARR_PATH . 'form-handlers/register.php';
 require_once AARR_PATH . 'shortcodes/login_sc.php';
 require_once AARR_PATH . 'form-handlers/login.php';
 require_once AARR_PATH . '_/user-restrictions.php';
+require_once AARR_PATH . '_/helper.php';
 
 class Add_And_Review_Recipes
 {
@@ -35,6 +37,7 @@ class Add_And_Review_Recipes
         new AARR_Login_SC();
         new AARR_Login();
         new AARR_User_Restrictions();
+        new AARR_Helper();
 
         add_action('init', [$this, 'add_role_user']);
         add_action('init', [$this, 'start_session'], 1);

@@ -64,8 +64,8 @@ class AARR_Register_SC
 
             ?>
 
-            <div class="col-8 mx-auto text-center">
-                <form method="post">
+            <div class="col-6 mx-auto text-center">
+                <form method="post" id="register-form">
                     <div class="mb-3">
                         <label for="username">
                             <?php _e('Username', 'aarr');?>
