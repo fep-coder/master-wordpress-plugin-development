@@ -29,6 +29,7 @@ class AARR_Admin
     public function register_settings()
     {
         register_setting('aarr_options_group', 'aarr_selected_cpt');
+        register_setting('aarr_options_group', 'aarr_selected_categories');
 
         add_settings_section(
             'aarr_settings_section',
@@ -43,6 +44,21 @@ class AARR_Admin
             [$this, 'display_cpt_radio_buttons'],
             'add-and-review-recipes',
             'aarr_settings_section',
+        );
+
+        add_settings_section(
+            'aarr_categories_section',
+            __('Select Categories', 'aarr'),
+            null,
+            'add-and-review-recipes',
+        );
+
+        add_settings_field(
+            'aarr_selected_categories',
+            __('Available Categories', 'aarr'),
+            [$this, 'display_category_checkboxes'],
+            'add-and-review-recipes',
+            'aarr_categories_section',
         );
     }
 
@@ -81,5 +97,23 @@ class AARR_Admin
             <?php
 
         }
+    }
+
+    public function display_category_checkboxes()
+    {
+        $selected_categories = get_option('aarr_selected_categories', []);
+        $categories = get_categories(['hide_empty' => false]);
+
+        foreach ($categories as $category) {
+            ?>
+            <label>
+                <input type="checkbox"
+                name="aarr_selected_categories[]"
+                value="<?php echo esc_attr($category->term_id); ?>"
+                <?php checked(in_array($category->term_id, $selected_categories));?>>
+                <?php echo esc_html($category->name); ?>
+            </label><br>
+            <?php
+}
     }
 }
