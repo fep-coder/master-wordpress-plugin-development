@@ -14,6 +14,7 @@ class AARR_Helper
         add_action('init', [$this, 'start_session'], 1);
         add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts']);
         add_action('wp_logout', [$this, 'redirect_after_logout']);
+        add_action('template_redirect', [$this, 'redirect_loggedin_user']);
     }
 
     public function add_role_user()
@@ -38,6 +39,16 @@ class AARR_Helper
     {
         wp_safe_redirect(home_url());
         exit();
+    }
+
+    public function redirect_loggedin_user()
+    {
+        if (is_user_logged_in()) {
+            if (is_page('login') || is_page('register')) {
+                wp_safe_redirect(home_url());
+                exit();
+            }
+        }
     }
 
     public function enqueue_scripts()
