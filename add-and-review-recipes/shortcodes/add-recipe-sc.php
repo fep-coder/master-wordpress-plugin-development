@@ -86,7 +86,6 @@ class AARR_Add_Recipe_SC
                 <input
                     type="submit"
                     class="btn btn-primary"
-                    name="submit_recipe"
                     value="<?php _e('Submit Recipe', 'aarr')?>">
 
             </form>

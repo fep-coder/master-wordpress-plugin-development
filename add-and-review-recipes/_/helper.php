@@ -10,11 +10,19 @@ class AARR_Helper
 
     public function __construct()
     {
-        add_action('init', [$this, 'add_role_user']);
         add_action('init', [$this, 'start_session'], 1);
+        add_action('init', [$this, 'add_role_user']);
+        add_action('init', [$this, 'add_custom_capabilities']);
         add_action('wp_logout', [$this, 'redirect_after_logout']);
         add_action('template_redirect', [$this, 'redirect_loggedin_user']);
         add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts']);
+    }
+
+    public function start_session()
+    {
+        if (!session_id()) {
+            session_start();
+        }
     }
 
     public function add_role_user()
@@ -24,14 +32,16 @@ class AARR_Helper
             __('User', 'aarr'),
             [
                 'read' => true,
+                'edit_posts' => true,
             ]
         );
     }
 
-    public function start_session()
+    public function add_custom_capabilities()
     {
-        if (!session_id()) {
-            session_start();
+        $role = get_role('user');
+        if ($role) {
+            $role->add_cap('edit_posts');
         }
     }
 
