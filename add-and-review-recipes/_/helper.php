@@ -12,9 +12,9 @@ class AARR_Helper
     {
         add_action('init', [$this, 'add_role_user']);
         add_action('init', [$this, 'start_session'], 1);
-        add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts']);
         add_action('wp_logout', [$this, 'redirect_after_logout']);
         add_action('template_redirect', [$this, 'redirect_loggedin_user']);
+        add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts']);
     }
 
     public function add_role_user()

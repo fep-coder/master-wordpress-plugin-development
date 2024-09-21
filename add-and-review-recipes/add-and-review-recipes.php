@@ -25,6 +25,7 @@ require_once AARR_PATH . 'form-handlers/login.php';
 require_once AARR_PATH . '_/user-restrictions.php';
 require_once AARR_PATH . '_/helper.php';
 require_once AARR_PATH . '_/menu.php';
+require_once AARR_PATH . 'shortcodes/add-recipe-sc.php';
 
 class Add_And_Review_Recipes
 {
@@ -40,7 +41,7 @@ class Add_And_Review_Recipes
         new AARR_User_Restrictions();
         new AARR_Helper();
         new AARR_Menu();
-
+        new AARR_Add_Recipe_SC();
     }
 
     public static function get_instance()
