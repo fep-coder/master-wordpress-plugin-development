@@ -23,12 +23,14 @@ class AARR_Add_Recipe
             $meal = sanitize_text_field($_POST['meal']);
             $difficulty = sanitize_text_field($_POST['difficulty']);
             $content = sanitize_textarea_field($_POST['content']);
+            $category_id = sanitize_text_field($_POST['category']);
 
             $new_recipe = [
                 'post_title' => $title,
                 'post_content' => $content,
                 'post_status' => 'pending',
                 'post_type' => 'recipe',
+                'post_category' => [$category_id],
             ];
 
             $recipe_id = wp_insert_post($new_recipe);

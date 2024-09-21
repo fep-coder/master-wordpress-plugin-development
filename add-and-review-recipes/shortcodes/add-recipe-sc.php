@@ -15,8 +15,9 @@ class AARR_Add_Recipe_SC
 
     public function render_recipe_form()
     {
-
         ob_start();
+
+        $selected_categories = get_option('aarr_selected_categories');
         ?>
 
         <div class="col-8 mx-auto">
@@ -54,6 +55,19 @@ class AARR_Add_Recipe_SC
 
                         <?php foreach ($difficulty_field['choices'] as $value): ?>
                             <option value="<?php echo $value ?>"><?php echo $value ?></option>
+                        <?php endforeach;?>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label>
+                        <?php _e('Category', 'aarr');?>
+                    </label>
+                    <select name="category" class="form-control">
+                        <option value=""><?php _e('Select a category', 'aarr');?></option>
+                        <?php foreach ($selected_categories as $category_id): ?>
+                            <?php $category = get_category($category_id);?>
+                            <option value="<?php echo $category_id ?>"><?php echo $category->name ?></option>
                         <?php endforeach;?>
                     </select>
                 </div>
