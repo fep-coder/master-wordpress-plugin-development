@@ -13,6 +13,7 @@ class AARR_Helper
         add_action('init', [$this, 'add_role_user']);
         add_action('init', [$this, 'start_session'], 1);
         add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts']);
+        add_action('wp_logout', [$this, 'redirect_after_logout']);
     }
 
     public function add_role_user()
@@ -31,6 +32,12 @@ class AARR_Helper
         if (!session_id()) {
             session_start();
         }
+    }
+
+    public function redirect_after_logout()
+    {
+        wp_safe_redirect(home_url());
+        exit();
     }
 
     public function enqueue_scripts()

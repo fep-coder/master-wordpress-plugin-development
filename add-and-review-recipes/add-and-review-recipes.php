@@ -24,6 +24,7 @@ require_once AARR_PATH . 'shortcodes/login_sc.php';
 require_once AARR_PATH . 'form-handlers/login.php';
 require_once AARR_PATH . '_/user-restrictions.php';
 require_once AARR_PATH . '_/helper.php';
+require_once AARR_PATH . '_/menu.php';
 
 class Add_And_Review_Recipes
 {
@@ -38,6 +39,7 @@ class Add_And_Review_Recipes
         new AARR_Login();
         new AARR_User_Restrictions();
         new AARR_Helper();
+        new AARR_Menu();
 
     }
 
