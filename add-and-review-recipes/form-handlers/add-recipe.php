@@ -24,6 +24,27 @@ class AARR_Add_Recipe
             $content = sanitize_textarea_field($_POST['content']);
             $category_id = sanitize_text_field($_POST['category']);
 
+            $errors = [];
+
+            if (strlen($title) < 4) {
+                $errors[] = __('Title must be at least 4 characters long!', 'aarr');
+            }
+
+            if (strlen($content) < 4) {
+                $errors[] = __('Content must be at least 4 characters long!', 'aarr');
+            }
+
+            if (empty($category_id)) {
+                $errors[] = __('You must select a category!', 'aarr');
+            }
+
+            if (!empty($errors)) {
+                $_SESSION['add_recipe_data'] = $_POST;
+                $_SESSION['add_recipe_errors'] = $errors;
+                wp_redirect(wp_get_referer());
+                return;
+            }
+
             $new_recipe = [
                 'post_title' => $title,
                 'post_content' => $content,
