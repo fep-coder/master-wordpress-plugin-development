@@ -10,7 +10,27 @@ class AARR_Helper
 
     public function __construct()
     {
+        add_action('init', [$this, 'add_role_user']);
+        add_action('init', [$this, 'start_session'], 1);
         add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts']);
+    }
+
+    public function add_role_user()
+    {
+        add_role(
+            'user',
+            __('User', 'aarr'),
+            [
+                'read' => true,
+            ]
+        );
+    }
+
+    public function start_session()
+    {
+        if (!session_id()) {
+            session_start();
+        }
     }
 
     public function enqueue_scripts()

@@ -39,26 +39,6 @@ class Add_And_Review_Recipes
         new AARR_User_Restrictions();
         new AARR_Helper();
 
-        add_action('init', [$this, 'add_role_user']);
-        add_action('init', [$this, 'start_session'], 1);
-    }
-
-    public function add_role_user()
-    {
-        add_role(
-            'user',
-            __('User', 'aarr'),
-            [
-                'read' => true,
-            ]
-        );
-    }
-
-    public function start_session()
-    {
-        if (!session_id()) {
-            session_start();
-        }
     }
 
     public static function get_instance()
