@@ -17,6 +17,11 @@ class AARR_User_Restrictions
     public function redirect_non_admin_users()
     {
         if (!current_user_can('edit_posts') && !wp_doing_ajax()) {
+
+            if (isset($_POST['action']) && $_POST['action'] == 'submit_recipe') {
+                return;
+            }
+
             wp_safe_redirect(home_url());
             exit;
         }

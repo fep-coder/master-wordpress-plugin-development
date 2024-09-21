@@ -21,7 +21,9 @@ class AARR_Add_Recipe_SC
         ?>
 
         <div class="col-8 mx-auto">
-            <form method="post" enctype="multipart/form-data">
+            <form method="post"
+                    action="<?php echo admin_url('admin-post.php'); ?>"
+                    enctype="multipart/form-data">
 
                 <div class="mb-3">
                     <label>
@@ -78,6 +80,8 @@ class AARR_Add_Recipe_SC
                 </div>
 
                 <?php wp_nonce_field('recipe_submission', 'recipe_submission_nonce');?>
+
+                <input type="hidden" name="action" value="submit_recipe">
 
                 <input
                     type="submit"

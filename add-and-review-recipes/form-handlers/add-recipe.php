@@ -10,10 +10,11 @@ class AARR_Add_Recipe
 
     public function __construct()
     {
-        add_action('init', [$this, 'process_recipe_submission']);
+        add_action('admin_post_submit_recipe', [$this, 'handle_recipe_submission']);
+        add_action('admin_post_nopriv_submit_recipe', [$this, 'handle_recipe_submission']);
     }
 
-    public function process_recipe_submission()
+    public function handle_recipe_submission()
     {
         if (isset($_POST['submit_recipe'])
             && isset($_POST['recipe_submission_nonce'])
