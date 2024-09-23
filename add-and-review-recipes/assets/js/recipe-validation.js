@@ -1,4 +1,15 @@
 jQuery(document).ready(function ($) {
+    $("#recipe_image").on("change", function () {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                $("#image-preview").attr("src", e.target.result).show();
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
     $("#add-recipe-form").validate({
         rules: {
             title: {

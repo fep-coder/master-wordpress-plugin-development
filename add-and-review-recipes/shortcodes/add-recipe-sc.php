@@ -30,7 +30,7 @@ class AARR_Add_Recipe_SC
                 $title = isset($post_data['title']) ? esc_attr($post_data['title']) : '';
                 $meal = isset($post_data['meal']) ? esc_attr($post_data['meal']) : '';
                 $difficulty = isset($post_data['difficulty']) ? esc_attr($post_data['difficulty']) : '';
-                $content = isset($post_data['content']) ? esc_attr($post_data['content']) : '';
+                $recipe = isset($post_data['content']) ? esc_attr($post_data['content']) : '';
                 $post_cat_id = isset($post_data['category']) ? esc_attr($post_data['category']) : '';
 
                 if (isset($_SESSION['add_recipe_data'])) {
@@ -117,13 +117,14 @@ class AARR_Add_Recipe_SC
                 <div class="mb-3">
                     <label><?php _e('Image', 'aarr');?></label>
                     <input type="file" name="recipe_image" id="recipe_image" class="form-control">
+                    <img id="image-preview" src="" style="display:none; max-width: 50%; margin-top: 10px;">
                 </div>
 
                 <div class="mb-3">
                     <label><?php _e('Recipe', 'aarr');?></label>
                 <?php
 
-                $content = '';
+                $content = $recipe;
                 $editor_id = 'recipe_content';
                 $settings = [
                     'media_buttons' => false,
