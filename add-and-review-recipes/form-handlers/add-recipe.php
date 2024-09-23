@@ -83,7 +83,9 @@ class AARR_Add_Recipe
                     wp_die($image_id->get_error_message());
                 }
 
-                echo 'submitted';
+                $_SESSION['add_recipe_success'] =
+                    __('Your recipe has been submitted. It will be reviewed and published soon.', 'aarr');
+                wp_redirect(wp_get_referer());
                 exit;
             } else {
                 wp_die(__('Error submitting your recipe, try again later.', 'aarr'));

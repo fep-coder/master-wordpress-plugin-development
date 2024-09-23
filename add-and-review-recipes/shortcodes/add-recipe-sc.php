@@ -17,31 +17,37 @@ class AARR_Add_Recipe_SC
     {
         ob_start();
 
-        if (is_user_logged_in()) {
+        if (isset($_SESSION['add_recipe_success'])) {
+            echo '<p class="text-center w-100 text-success">'
+                . $_SESSION['add_recipe_success'] . '</p>';
+            unset($_SESSION['add_recipe_success']);
+        } else {
 
-            $post_data = isset($_SESSION['add_recipe_data']) ? $_SESSION['add_recipe_data'] : [];
+            if (is_user_logged_in()) {
 
-            $title = isset($post_data['title']) ? esc_attr($post_data['title']) : '';
-            $meal = isset($post_data['meal']) ? esc_attr($post_data['meal']) : '';
-            $difficulty = isset($post_data['difficulty']) ? esc_attr($post_data['difficulty']) : '';
-            $content = isset($post_data['content']) ? esc_attr($post_data['content']) : '';
-            $post_cat_id = isset($post_data['category']) ? esc_attr($post_data['category']) : '';
+                $post_data = isset($_SESSION['add_recipe_data']) ? $_SESSION['add_recipe_data'] : [];
 
-            if (isset($_SESSION['add_recipe_data'])) {
-                unset($_SESSION['add_recipe_data']);
-            }
+                $title = isset($post_data['title']) ? esc_attr($post_data['title']) : '';
+                $meal = isset($post_data['meal']) ? esc_attr($post_data['meal']) : '';
+                $difficulty = isset($post_data['difficulty']) ? esc_attr($post_data['difficulty']) : '';
+                $content = isset($post_data['content']) ? esc_attr($post_data['content']) : '';
+                $post_cat_id = isset($post_data['category']) ? esc_attr($post_data['category']) : '';
 
-            if (isset($_SESSION['add_recipe_errors'])) {
-                echo '<div class="error text-center w-100">';
-                foreach ($_SESSION['add_recipe_errors'] as $error) {
-                    echo '<p>' . esc_html($error) . '</p>';
+                if (isset($_SESSION['add_recipe_data'])) {
+                    unset($_SESSION['add_recipe_data']);
                 }
-                echo '</div>';
-                unset($_SESSION['add_recipe_errors']);
-            }
 
-            $selected_categories = get_option('aarr_selected_categories');
-            ?>
+                if (isset($_SESSION['add_recipe_errors'])) {
+                    echo '<div class="error text-center w-100">';
+                    foreach ($_SESSION['add_recipe_errors'] as $error) {
+                        echo '<p>' . esc_html($error) . '</p>';
+                    }
+                    echo '</div>';
+                    unset($_SESSION['add_recipe_errors']);
+                }
+
+                $selected_categories = get_option('aarr_selected_categories');
+                ?>
 
         <div class="col-8 mx-auto">
             <form method="post"
@@ -131,11 +137,13 @@ class AARR_Add_Recipe_SC
 
         <?php
 
-        } else {
-            echo '
+            } else {
+                echo '
             <p class="text-center pt-3 w-100">
                 <a href="/login?redirect=add-recipe">Log in</a> to add recipes.</a>
             </p>';
+            }
+
         }
 
         return ob_get_clean();
