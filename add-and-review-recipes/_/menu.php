@@ -28,16 +28,13 @@ class AARR_Menu
 
         foreach ($items as $key => &$item) {
             if (is_user_logged_in()) {
-                $current_user = wp_get_current_user();
 
-                // if (in_array('user', $current_user->roles)) {
                 if ($item->url == $login_url) {
                     $item->url = $logout_url;
                     $item->title = __('Logout', 'aarr');
                 }
-                // }
 
-                if ($item->url == $register_url) {
+                if ($item->url == $register_url || $item->url == $logout_url) {
                     unset($items[$key]);
                 }
             }
