@@ -51,6 +51,7 @@ class AARR_Add_Recipe_SC
 
         <div class="col-8 mx-auto">
             <form method="post"
+                    id="add-recipe-form"
                     action="<?php echo admin_url('admin-post.php'); ?>"
                     enctype="multipart/form-data">
 
