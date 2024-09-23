@@ -53,7 +53,13 @@ class AARR_Login
             } else {
                 wp_set_current_user($user->ID);
                 wp_set_auth_cookie($user->ID, true);
-                wp_redirect(home_url());
+
+                if (isset($_GET['redirect']) && !empty($_GET['redirect'])) {
+                    $redirect_url = sanitize_url($_GET['redirect']);
+                    wp_redirect("/" . $redirect_url);
+                } else {
+                    wp_redirect(home_url());
+                }
 
                 exit;
             }

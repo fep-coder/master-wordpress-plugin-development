@@ -11,7 +11,7 @@ class AARR_User_Restrictions
     public function __construct()
     {
         add_action('admin_init', [$this, 'redirect_non_admin_users']);
-        // add_filter('show_admin_bar', [$this, 'hide_admin_bar_for_users']);
+        add_filter('show_admin_bar', [$this, 'hide_admin_bar_for_users']);
     }
 
     public function redirect_non_admin_users()
@@ -29,7 +29,7 @@ class AARR_User_Restrictions
 
     public function hide_admin_bar_for_users($show_admin_bar)
     {
-        if (!current_user_can('edit_posts')) {
+        if (!current_user_can('administrator')) {
             $show_admin_bar = false;
         }
 
