@@ -119,8 +119,19 @@ class AARR_Add_Recipe_SC
                 </div>
 
                 <div class="mb-3">
-                    <label><?php _e('Content', 'aarr');?></label>
-                    <textarea name="content" class="form-control" rows="5" required><?php echo $content; ?></textarea>
+                    <label><?php _e('Recipe', 'aarr');?></label>
+                <?php
+
+                $content = '';
+                $editor_id = 'recipe_content';
+                $settings = [
+                    'media_buttons' => false,
+                    'textarea_name' => 'recipe_content',
+                    'textarea_rows' => 10,
+                ];
+                wp_editor($content, $editor_id, $settings);
+
+                ?>
                 </div>
 
                 <?php wp_nonce_field('recipe_submission', 'recipe_submission_nonce');?>

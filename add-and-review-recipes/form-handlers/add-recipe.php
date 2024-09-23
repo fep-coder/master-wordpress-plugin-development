@@ -21,7 +21,7 @@ class AARR_Add_Recipe
             $title = sanitize_text_field($_POST['title']);
             $meal = sanitize_text_field($_POST['meal']);
             $difficulty = sanitize_text_field($_POST['difficulty']);
-            $content = sanitize_textarea_field($_POST['content']);
+            $content = wp_kses_post($_POST['recipe_content']);
             $category_id = sanitize_text_field($_POST['category']);
 
             $errors = [];
@@ -31,7 +31,7 @@ class AARR_Add_Recipe
             }
 
             if (strlen($content) < 4) {
-                $errors[] = __('Content must be at least 4 characters long!', 'aarr');
+                $errors[] = __('Recipe must be at least 4 characters long!', 'aarr');
             }
 
             if (empty($category_id)) {
