@@ -38,6 +38,22 @@ class AARR_Add_Recipe
                 $errors[] = __('You must select a category!', 'aarr');
             }
 
+            if (empty($_FILES['recipe_image']['name'])) {
+                $errors[] = __('You must select an image!', 'aarr');
+            } else {
+                $uploaded_file = $_FILES['recipe_image'];
+
+                $file_type = wp_check_filetype_and_ext(
+                    $uploaded_file['tmp_name'],
+                    $uploaded_file['name']
+                );
+
+                $valid_extensions = ['jpg', 'jpeg', 'png', 'gif'];
+                if (!in_array($file_type['ext'], $valid_extensions)) {
+                    $errors[] = __('Invalid image type!', 'aarr');
+                }
+            }
+
             if (!empty($errors)) {
                 $_SESSION['add_recipe_data'] = $_POST;
                 $_SESSION['add_recipe_errors'] = $errors;
@@ -58,6 +74,14 @@ class AARR_Add_Recipe
             if ($recipe_id) {
                 update_field('meal', $meal, $recipe_id);
                 update_field('difficulty', $difficulty, $recipe_id);
+
+                $image_id = media_handle_upload('recipe_image', $recipe_id);
+
+                if (!is_wp_error($image_id)) {
+                    set_post_thumbnail($recipe_id, $image_id);
+                } else {
+                    wp_die($image_id->get_error_message());
+                }
 
                 echo 'submitted';
                 exit;

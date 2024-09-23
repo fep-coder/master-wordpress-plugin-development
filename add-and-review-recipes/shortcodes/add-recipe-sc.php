@@ -108,6 +108,11 @@ class AARR_Add_Recipe_SC
                 </div>
 
                 <div class="mb-3">
+                    <label><?php _e('Image', 'aarr');?></label>
+                    <input type="file" name="recipe_image" id="recipe_image" class="form-control">
+                </div>
+
+                <div class="mb-3">
                     <label><?php _e('Content', 'aarr');?></label>
                     <textarea name="content" class="form-control" rows="5" required><?php echo $content; ?></textarea>
                 </div>
