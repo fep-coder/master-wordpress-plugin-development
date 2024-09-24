@@ -11,6 +11,7 @@ class AARR_Rating_SC
     public function __construct()
     {
         add_shortcode('recipe_rating', [$this, 'render_rating']);
+        add_action('wp_enqueue_scripts', [$this, 'enqueue_rating_script']);
     }
 
     public function render_rating()
@@ -43,6 +44,27 @@ class AARR_Rating_SC
         <?php
 
         return ob_get_clean();
+
+    }
+
+    public function enqueue_rating_script()
+    {
+        if (is_singular('recipe')) {
+
+            wp_enqueue_script(
+                'aarr-rating-script',
+                AARR_URL . 'assets/js/rating.js',
+                ['jquery'],
+                '1.0.0',
+                true
+            );
+
+            wp_localize_script('aarr-rating-script', 'aarrRating', [
+                'ajax_url' => admin_url('admin-ajax.php'),
+                'nonce' => wp_create_nonce('rating_nonce'),
+            ]);
+
+        }
 
     }
 
