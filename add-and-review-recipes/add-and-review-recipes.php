@@ -58,7 +58,7 @@ class Add_And_Review_Recipes
 
     public static function activate()
     {
-        // Code to run on plugin activation
+        self::create_ratings_table();
     }
 
     public static function deactivate()
@@ -68,6 +68,24 @@ class Add_And_Review_Recipes
 
     public static function uninstall()
     {
+    }
+
+    public static function create_ratings_table()
+    {
+        global $wpdb;
+        $charset_collate = $wpdb->get_charset_collate();
+        $table_name = $wpdb->prefix . 'aarr_ratings';
+
+        $sql = "CREATE TABLE $table_name (
+            id bigint(20) NOT NULL AUTO_INCREMENT,
+            recipe_id bigint(20) NOT NULL,
+            user_id bigint(20) NOT NULL,
+            rating tinyint(1) NOT NULL,
+            PRIMARY KEY  (id)
+        ) $charset_collate;";
+
+        require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+        dbDelta($sql);
     }
 }
 

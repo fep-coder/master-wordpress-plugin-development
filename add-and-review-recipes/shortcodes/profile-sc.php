@@ -37,7 +37,7 @@ class AARR_Profile_SC
                 $query->the_post();
                 $post_status = get_post_status();
 
-                $status_label = ($post_status == 'pending') ? ' ( pending )' : '';
+                $status_label = ($post_status == 'pending') ? ' <span class="badge text-bg-warning">pending</span>' : '';
 
                 echo '<h2>' . get_the_title() . $status_label . '</h2>';
                 echo get_the_post_thumbnail(get_the_ID(), 'thumbnail');
