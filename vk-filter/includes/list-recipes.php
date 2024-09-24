@@ -34,11 +34,13 @@ class VKF_List_Recipes
                     'medium',
                     ['class' => 'img-fluid', 'alt' => get_the_title()]);
 
-                $output .= '<div class="col-6 pb-3">';
+                $output .= '<div class="col-6 pb-5">';
 
                 $output .= '
-                <h2> <a href="' . get_permalink() . '">'
+                <h2> <a class="text-warning" href="' . get_permalink() . '">'
                 . get_the_title() . '</a></h2>';
+
+                $output .= do_shortcode('[recipe_rating]');
 
                 if (has_post_thumbnail()) {
                     $output .= '<a href="' . get_permalink() . '">' . $thumbnail . '</a>';
