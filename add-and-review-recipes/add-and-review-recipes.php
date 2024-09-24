@@ -28,6 +28,7 @@ require_once AARR_PATH . '_/menu.php';
 require_once AARR_PATH . 'shortcodes/add-recipe-sc.php';
 require_once AARR_PATH . 'form-handlers/add-recipe.php';
 require_once AARR_PATH . 'shortcodes/profile-sc.php';
+require_once AARR_PATH . 'shortcodes/rating_sc.php';
 
 class Add_And_Review_Recipes
 {
@@ -46,6 +47,7 @@ class Add_And_Review_Recipes
         new AARR_Add_Recipe_SC();
         new AARR_Add_Recipe();
         new AARR_Profile_SC();
+        new AARR_Rating_SC();
     }
 
     public static function get_instance()
