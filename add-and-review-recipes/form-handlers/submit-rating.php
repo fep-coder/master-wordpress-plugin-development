@@ -29,6 +29,11 @@ class AARR_Submit_Rating
         $rating = intval($_POST['rating']);
         $user_id = get_current_user_id();
 
+        $post_author_id = get_post_field('post_author', $recipe_id);
+        if ($user_id == $post_author_id) {
+            wp_send_json_error('You cannot rate your own recipe');
+        }
+
         // Check if rating already exists
         $rating_exists = $wpdb->get_var($wpdb->prepare(
             "SELECT rating FROM {$wpdb->prefix}aarr_ratings

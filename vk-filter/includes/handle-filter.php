@@ -68,7 +68,11 @@ class VKF_Handle_Filter
 
                 // Output post content
                 echo '<div class="col-6 pb-5">';
-                echo '<h2><a class="text-warning" href="' . get_permalink() . '">' . get_the_title() . '</a></h2>';
+                echo '<h2><a class="text-warning" href="' . get_permalink() . '">'
+                . get_the_title() . '</a>
+                <span class="badge text-bg-secondary">'
+                . get_the_author() . '</span>
+                </h2>';
                 echo do_shortcode('[recipe_rating]');
                 if (has_post_thumbnail()) {
                     echo '<a href="' . get_permalink() . '">'

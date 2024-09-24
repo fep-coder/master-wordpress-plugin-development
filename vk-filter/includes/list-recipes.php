@@ -38,7 +38,9 @@ class VKF_List_Recipes
 
                 $output .= '
                 <h2> <a class="text-warning" href="' . get_permalink() . '">'
-                . get_the_title() . '</a></h2>';
+                . get_the_title()
+                . '</a> <span class="badge text-bg-secondary">'
+                . get_the_author() . '</span>' . '</h2>';
 
                 $output .= do_shortcode('[recipe_rating]');
 
