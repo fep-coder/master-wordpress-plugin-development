@@ -39,8 +39,6 @@ class AARR_Rating_SC
             <?php endfor;?>
         </div>
 
-        <p><?php echo round($avg_rating); ?></p>
-
         <?php
 
         return ob_get_clean();
